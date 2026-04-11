@@ -68,7 +68,17 @@ function cadastrarAeronave() {
       ? TipoAeronave.MILITAR
       : TipoAeronave.COMERCIAL;
 
-  const nova = new Aeronave(codigo, modelo, tipo, 100, 1000);
+  const capacidade = parseInt(readlineSync.question("Capacidade de passageiros: "));
+
+  const alcance = parseInt(readlineSync.question("Alcance (km): "));
+
+  const nova = new Aeronave(
+    codigo, 
+    modelo, 
+    tipo,
+    capacidade, 
+    alcance
+  );
 
   aeronaves.push(nova);
   FileService.salvar("data/aeronaves.txt", aeronaves);
@@ -112,6 +122,7 @@ function adicionarPeca() {
   console.log("✅ Peça adicionada!");
 }
 
+// Eu sou feliz!! Vou aprender mais!
 function atualizarStatusPeca() {
   const codigo = readlineSync.question("Código da aeronave: ");
   const aeronave = aeronaves.find(a => a.codigo === codigo);
